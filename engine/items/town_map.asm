@@ -145,10 +145,6 @@ LoadTownMap_Fly::
 	ld hl, vSprites tile $04
 	lb bc, BANK(BirdSprite), 12
 	call CopyVideoData
-	ld de, TownMapUpArrow
-	ld hl, vChars1 tile $6d
-	lb bc, BANK(TownMapUpArrow), (TownMapUpArrowEnd - TownMapUpArrow) / $8
-	call CopyVideoDataDouble
 	call BuildFlyLocationsList
 	ld hl, wUpdateSpritesEnabled
 	ld a, [hl]
@@ -271,10 +267,6 @@ BuildFlyLocationsList:
 	jr nz, .loop
 	ld [hl], $ff
 	ret
-
-TownMapUpArrow:
-	INCBIN "gfx/town_map/up_arrow.1bpp"
-TownMapUpArrowEnd:
 
 LoadTownMap:
 	call GBPalWhiteOutWithDelay3
