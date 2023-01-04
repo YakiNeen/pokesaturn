@@ -478,7 +478,7 @@ ShowPokedexDataInternal:
 	hlcoord 2, 8
 	ld a, "№"
 	ld [hli], a
-	ld a, "<DOT>"
+	ld a, "."
 	ld [hli], a
 	ld de, wd11e
 	lb bc, LEADING_ZEROES | 1, 3
@@ -528,7 +528,7 @@ ShowPokedexDataInternal:
 	inc hl
 	ld a, [hli]
 	ld [hld], a ; make space for the decimal point by moving the last digit forward one tile
-	ld [hl], "<DOT>" ; decimal point tile
+	ld [hl], "."
 ; now print the weight (note that weight is stored in tenths of kilograms internally)
 	inc de
 	inc de
@@ -560,7 +560,7 @@ ShowPokedexDataInternal:
 	inc hl
 	ld a, [hli]
 	ld [hld], a ; make space for the decimal point by moving the last digit forward one tile
-	ld [hl], "<DOT>" ; decimal point tile
+	ld [hl], "."
 	pop af
 	ldh [hDexWeight + 1], a ; restore original value of [hDexWeight + 1]
 	pop af
