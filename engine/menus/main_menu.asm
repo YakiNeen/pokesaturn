@@ -489,7 +489,7 @@ DisplayOptionMenu:
 	cp 16 ; is the cursor on Cancel?
 	jr nz, .loop
 .exitMenu
-	ld a, SFX_PRESS_AB
+	ld a, SFX_SAVE
 	call PlaySound
 	ret
 .eraseOldMenuCursor
