@@ -8,7 +8,7 @@ CableClub_DoBattleOrTrade:
 	call UpdateSprites
 	call LoadFontTilePatterns
 	call LoadHpBarAndStatusTilePatterns
-	call LoadTrainerInfoTextBoxTiles
+	farcall LoadDiplomaTiles
 	hlcoord 3, 8
 	ld b, 2
 	ld c, 12
@@ -311,7 +311,7 @@ CallCurrentTradeCenterFunction:
 
 TradeCenter_SelectMon:
 	call ClearScreen
-	call LoadTrainerInfoTextBoxTiles
+	farcall LoadDiplomaTiles
 	call TradeCenter_DrawPartyLists
 	call TradeCenter_DrawCancelBox
 	xor a
@@ -628,7 +628,7 @@ TradeCenter_DisplayStats:
 	predef StatusScreen
 	predef StatusScreen2
 	call GBPalNormal
-	call LoadTrainerInfoTextBoxTiles
+	farcall LoadDiplomaTiles
 	call TradeCenter_DrawPartyLists
 	jp TradeCenter_DrawCancelBox
 
@@ -850,7 +850,7 @@ TradeCenter_Trade:
 .tradeCompleted
 	callfar TryEvolvingMon
 	call ClearScreen
-	call LoadTrainerInfoTextBoxTiles
+	farcall LoadDiplomaTiles
 	call Serial_PrintWaitingTextAndSyncAndExchangeNybble
 	ld c, 40
 	call DelayFrames
@@ -973,9 +973,3 @@ CableClub_DrawHorizontalLine:
 	dec d
 	jr nz, .loop
 	ret
-
-LoadTrainerInfoTextBoxTiles:
-	ld de, TrainerInfoTextBoxTileGraphics
-	ld hl, vChars2 tile $76
-	lb bc, BANK(TrainerInfoTextBoxTileGraphics), (TrainerInfoTextBoxTileGraphicsEnd - TrainerInfoTextBoxTileGraphics) / $10
-	jp CopyVideoData
