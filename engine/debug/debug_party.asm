@@ -19,11 +19,11 @@ DebugTeam:
 	db -1 ; end
 
 DebugStart:
-	xor a ; PLAYER_PARTY_DATA
+	ld a, $f0 ; PLAYER_PARTY_DATA
 	ld [wMonDataLocation], a
 
 	; Fly anywhere.
-	dec a ; $ff
+	ld a, $ff
 	ld [wTownVisitedFlag], a
 	ld [wTownVisitedFlag + 1], a
 
@@ -75,6 +75,36 @@ DebugStart:
 	ld a, STARTER1
 	ld [hl], a
 
+	ld de, CheatSetEvents
+.set_events_loop
+	ld a, [de]
+	and a
+	jr z, .set_events_done
+	ld b, a
+	inc de
+	ld a, [de]
+	ld l, a
+	inc de
+	ld a, [de]
+	ld h, a
+	ld a, [hl]
+	or b
+	ld [hl], a
+	inc de
+	jr .set_events_loop
+.set_events_done
+
+	ld hl, CheatHideShowObjects
+	ld de, wMissableObjectFlags
+	ld bc, CheatHideShowObjects.End - CheatHideShowObjects
+	call CopyData
+
+	ld a, $5
+	ld [wPalletTownCurScript], a
+	ld a, $11
+	ld [wOaksLabCurScript], a
+	ld a, $2
+	ld [wViridianMartCurScript], a
 	ret
 
 DebugSetPokedexEntries:
@@ -120,6 +150,7 @@ ClefableMoves::
 	ld a, 15
 	ld [hli], a
 	ld [hl], a
+	ret
 
 ArticunoMoves::
 	; Articuno gets Fly.
@@ -129,6 +160,7 @@ ArticunoMoves::
 	ld hl, wPartyMon2PP
 	ld a, 15
 	ld [hl], a
+	ret
 
 JolteonMoves::
 	; Jolteon gets Thunderbolt.
@@ -138,3 +170,33 @@ JolteonMoves::
 	ld hl, wPartyMon3PP + 3
 	ld a, 15
 	ld [hl], a
+	ret
+
+CheatSetEvents:
+MACRO cheat_event
+	db 1 << ((\1) % 8)
+	dw wEventFlags + ((\1) / 8)
+ENDM
+	cheat_event EVENT_FOLLOWED_OAK_INTO_LAB
+	cheat_event EVENT_FOLLOWED_OAK_INTO_LAB_2
+	cheat_event EVENT_OAK_ASKED_TO_CHOOSE_MON
+	cheat_event EVENT_GOT_STARTER
+	cheat_event EVENT_BATTLED_RIVAL_IN_OAKS_LAB
+	cheat_event EVENT_GOT_POKEDEX
+	cheat_event EVENT_OAK_APPEARED_IN_PALLET
+	cheat_event EVENT_OAK_GOT_PARCEL
+	cheat_event EVENT_GOT_OAKS_PARCEL
+	db 0 ; end
+
+CheatHideShowObjects:
+; hide HS_OAKS_LAB_OAK_2
+; show HS_OAKS_LAB_OAK_1
+; hide HS_OAKS_LAB_RIVAL
+; hide HS_STARTER_BALL_1
+; hide HS_STARTER_BALL_2
+; hide HS_POKEDEX_1
+; hide HS_POKEDEX_2
+; hide HS_LYING_OLD_MAN
+; show HS_OLD_MAN
+	db $a3, $00, $7e, $01, $08, $9d, $03
+.End
