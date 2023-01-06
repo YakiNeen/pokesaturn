@@ -144,7 +144,7 @@
 	charmap "<u'>",      $c9
 	charmap "<y'>",      $ca
 
-	charmap "²",         $cb
+	charmap "&",         $cb
 
 	charmap "▲",         $cc
 	charmap "▷",         $cd
