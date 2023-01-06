@@ -1,13 +1,5 @@
-; This function is a debugging feature to give the player Tsunekazu Ishihara's
-; favorite Pokemon. This is indicated by the overpowered Exeggutor, which
-; Ishihara (president of Creatures Inc.) said was his favorite Pokemon in an ABC
-; interview on February 8, 2000.
-; "Exeggutor is my favorite. That's because I was always using this character
-; while I was debugging the program."
-; http://www.ign.com/articles/2000/02/09/abc-news-pokamon-chat-transcript
-
-SetIshiharaTeam:
-	ld de, IshiharaTeam
+SetDebugTeam:
+	ld de, DebugTeam
 .loop
 	ld a, [de]
 	cp -1
@@ -20,23 +12,13 @@ SetIshiharaTeam:
 	call AddPartyMon
 	jr .loop
 
-IshiharaTeam:
-	db EXEGGUTOR, 90
-IF DEF(_DEBUG)
-	db MEW, 5
-ELSE
-	db MEW, 20
-ENDC
-	db JOLTEON, 56
-	db DUGTRIO, 56
+DebugTeam:
+	db CLEFABLE, 90
 	db ARTICUNO, 57
-IF DEF(_DEBUG)
-	db PIKACHU, 5
-ENDC
+	db JOLTEON, 56
 	db -1 ; end
 
 DebugStart:
-IF DEF(_DEBUG)
 	xor a ; PLAYER_PARTY_DATA
 	ld [wMonDataLocation], a
 
@@ -49,50 +31,17 @@ IF DEF(_DEBUG)
 	ld a, ~(1 << BIT_EARTHBADGE)
 	ld [wObtainedBadges], a
 
-	call SetIshiharaTeam
-
-	; Exeggutor gets four HM moves.
-	ld hl, wPartyMon1Moves
-	ld a, FLY
+	; Get ¥999999.
+	ld a, $99
+	ld hl, wPlayerMoney
 	ld [hli], a
-	ld a, CUT
-	ld [hli], a
-	ld a, SURF
-	ld [hli], a
-	ld a, STRENGTH
-	ld [hl], a
-	ld hl, wPartyMon1PP
-	ld a, 15
-	ld [hli], a
-	ld a, 30
-	ld [hli], a
-	ld a, 15
 	ld [hli], a
 	ld [hl], a
 
-	; Jolteon gets Thunderbolt.
-	ld hl, wPartyMon3Moves + 3
-	ld a, THUNDERBOLT
-	ld [hl], a
-	ld hl, wPartyMon3PP + 3
-	ld a, 15
-	ld [hl], a
-
-	; Articuno gets Fly.
-	ld hl, wPartyMon5Moves
-	ld a, FLY
-	ld [hl], a
-	ld hl, wPartyMon5PP
-	ld a, 15
-	ld [hl], a
-
-	; Pikachu gets Surf.
-	ld hl, wPartyMon6Moves + 2
-	ld a, SURF
-	ld [hl], a
-	ld hl, wPartyMon6PP + 2
-	ld a, 15
-	ld [hl], a
+	call SetDebugTeam
+	call ClefableMoves
+	call ArticunoMoves
+	call JolteonMoves
 
 	; Get some debug items.
 	ld hl, wNumBagItems
@@ -152,8 +101,40 @@ DebugItemsList:
 	db LIFT_KEY, 1
 	db -1 ; end
 
-DebugUnusedList:
-	db -1 ; end
-ELSE
-	ret
-ENDC
+ClefableMoves::
+	; Clefable gets four HM moves.
+	ld hl, wPartyMon1Moves
+	ld a, FLY
+	ld [hli], a
+	ld a, CUT
+	ld [hli], a
+	ld a, SURF
+	ld [hli], a
+	ld a, STRENGTH
+	ld [hl], a
+	ld hl, wPartyMon1PP
+	ld a, 15
+	ld [hli], a
+	ld a, 30
+	ld [hli], a
+	ld a, 15
+	ld [hli], a
+	ld [hl], a
+
+ArticunoMoves::
+	; Articuno gets Fly.
+	ld hl, wPartyMon2Moves
+	ld a, FLY
+	ld [hl], a
+	ld hl, wPartyMon2PP
+	ld a, 15
+	ld [hl], a
+
+JolteonMoves::
+	; Jolteon gets Thunderbolt.
+	ld hl, wPartyMon3Moves + 3
+	ld a, THUNDERBOLT
+	ld [hl], a
+	ld hl, wPartyMon3PP + 3
+	ld a, 15
+	ld [hl], a
