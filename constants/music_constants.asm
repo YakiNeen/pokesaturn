@@ -45,7 +45,7 @@ ENDM
 	music_const MUSIC_BIKE_RIDING,         Music_BikeRiding
 	music_const MUSIC_SURFING,             Music_Surfing
 	music_const MUSIC_GAME_CORNER,         Music_GameCorner
-	music_const MUSIC_INTRO_BATTLE,        Music_IntroBattle
+	music_const MUSIC_INTRO,               Music_Intro
 	music_const MUSIC_DUNGEON1,            Music_Dungeon1
 	music_const MUSIC_DUNGEON2,            Music_Dungeon2
 	music_const MUSIC_DUNGEON3,            Music_Dungeon3
@@ -229,16 +229,10 @@ DEF BATTLE_SFX_END   EQUS "SFX_SILPH_SCOPE + 1"
 DEF MAX_SFX_ID_2 EQUS "SFX_SILPH_SCOPE"
 
 	; AUDIO_3
-	music_const SFX_INTRO_LUNGE,        SFX_Intro_Lunge
-	music_const SFX_INTRO_HIP,          SFX_Intro_Hip
-	music_const SFX_INTRO_HOP,          SFX_Intro_Hop
-	music_const SFX_INTRO_RAISE,        SFX_Intro_Raise
-	music_const SFX_INTRO_CRASH,        SFX_Intro_Crash
 	music_const SFX_INTRO_WHOOSH,       SFX_Intro_Whoosh
 	music_const SFX_SLOTS_STOP_WHEEL,   SFX_Slots_Stop_Wheel
 	music_const SFX_SLOTS_REWARD,       SFX_Slots_Reward
 	music_const SFX_SLOTS_NEW_SPIN,     SFX_Slots_New_Spin
-	music_const SFX_SHOOTING_STAR,      SFX_Shooting_Star
-DEF MAX_SFX_ID_3 EQUS "SFX_SHOOTING_STAR"
+DEF MAX_SFX_ID_3 EQUS "SFX_SLOTS_NEW_SPIN"
 
 DEF SFX_STOP_ALL_MUSIC EQU $ff

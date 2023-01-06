@@ -1,4 +1,4 @@
-Music_IntroBattle_Ch1::
+Music_Intro_Ch1::
 	tempo 98
 	volume 7, 7
 	duty_cycle 3
@@ -89,7 +89,7 @@ Music_IntroBattle_Ch1::
 	note D_, 16
 	sound_ret
 
-Music_IntroBattle_Ch2::
+Music_Intro_Ch2::
 	duty_cycle 3
 	vibrato 8, 2, 5
 	note_type 12, 12, 2
@@ -163,7 +163,7 @@ Music_IntroBattle_Ch2::
 	note D_, 16
 	sound_ret
 
-Music_IntroBattle_Ch3::
+Music_Intro_Ch3::
 	note_type 12, 1, 0
 	rest 8
 	octave 4
@@ -226,7 +226,7 @@ Music_IntroBattle_Ch3::
 	rest 15
 	sound_ret
 
-Music_IntroBattle_Ch4::
+Music_Intro_Ch4::
 	drum_speed 6
 	drum_note 19, 1
 	drum_note 19, 1

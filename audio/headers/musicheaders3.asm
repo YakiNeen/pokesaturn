@@ -47,12 +47,12 @@ Music_GameCorner::
 	channel 2, Music_GameCorner_Ch2
 	channel 3, Music_GameCorner_Ch3
 
-Music_IntroBattle::
+Music_Intro::
 	channel_count 4
-	channel 1, Music_IntroBattle_Ch1
-	channel 2, Music_IntroBattle_Ch2
-	channel 3, Music_IntroBattle_Ch3
-	channel 4, Music_IntroBattle_Ch4
+	channel 1, Music_Intro_Ch1
+	channel 2, Music_Intro_Ch2
+	channel 3, Music_Intro_Ch3
+	channel 4, Music_Intro_Ch4
 
 ; Power Plant, Cerulean Cave, Rocket HQ
 Music_Dungeon1::
