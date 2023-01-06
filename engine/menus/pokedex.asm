@@ -505,7 +505,7 @@ ShowPokedexDataInternal:
 	call IndexToPokedex
 
 	hlcoord 2, 8
-	ld a, "№"
+	ld a, $6b
 	ld [hli], a
 	ld a, "."
 	ld [hli], a
@@ -612,7 +612,6 @@ ShowPokedexDataInternal:
 	call GBPalWhiteOut
 	call ClearScreen
 	call RunDefaultPaletteCommand
-	call LoadTextBoxTilePatterns
 	call GBPalNormal
 	ld hl, wd72c
 	res 1, [hl]
