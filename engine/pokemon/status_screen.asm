@@ -169,9 +169,9 @@ StatusScreen:
 	ld [wLoadedMonLevel], a ; Increase temporarily if not 100
 .Level100
 	hlcoord 5, 16
-	ld [hl], $6F ; 1-tile "to"
-	hlcoord 6, 16
-	ld [hl], $70
+	ld a, "<pa>"
+	ld [hli], a
+	ld [hl], "<ra>"
 	inc hl
 	call PrintLevel
 	pop af
