@@ -19,7 +19,7 @@ ShowPokedexMenu:
 	ld hl, wTopMenuItemY
 	ld a, 3
 	ld [hli], a ; top menu item Y
-	xor a
+	ld a, 1
 	ld [hli], a ; top menu item X
 	inc a
 	ld [wMenuWatchMovingOutOfBounds], a
@@ -81,7 +81,7 @@ HandlePokedexSideMenu:
 	ld hl, wTopMenuItemY
 	ld a, 10
 	ld [hli], a ; top menu item Y
-	ld a, 15
+	ld a, 14
 	ld [hli], a ; top menu item X
 	xor a
 	ld [hli], a ; current menu item ID
@@ -128,7 +128,7 @@ HandlePokedexSideMenu:
 
 .buttonBPressed
 	push bc
-	hlcoord 15, 10
+	hlcoord 14, 10
 	ld de, 20
 	lb bc, " ", 7
 	call DrawTileLine ; cover up the menu cursor in the side menu
@@ -156,45 +156,37 @@ HandlePokedexSideMenu:
 ; sets carry flag if player presses A, unsets carry flag if player presses B
 HandlePokedexListMenu:
 	xor a
-	ldh [hAutoBGTransferEnabled], a
-; draw the horizontal line separating the seen and owned amounts from the menu
-	hlcoord 15, 8
-	ld a, "─"
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	hlcoord 14, 0
-	ld [hl], $71 ; vertical line tile
-	hlcoord 14, 1
-	call DrawPokedexVerticalLine
-	hlcoord 14, 9
-	call DrawPokedexVerticalLine
+	ld [hAutoBGTransferEnabled], a
+	hlcoord 0, 0
+	lb bc, 18 - 2, 13 - 2
+	call DrawPokedexBox
+	hlcoord 13, 0
+	lb bc, 9 - 2, 7 - 2
+	call DrawPokedexBox
+	hlcoord 13, 9
+	lb bc, 9 - 2, 7 - 2
+	call DrawPokedexBox
 	ld hl, wPokedexSeen
 	ld b, wPokedexSeenEnd - wPokedexSeen
 	call CountSetBits
 	ld de, wNumSetBits
-	hlcoord 16, 3
+	hlcoord 15, 3
 	lb bc, 1, 3
 	call PrintNumber ; print number of seen pokemon
 	ld hl, wPokedexOwned
 	ld b, wPokedexOwnedEnd - wPokedexOwned
 	call CountSetBits
 	ld de, wNumSetBits
-	hlcoord 16, 6
+	hlcoord 15, 6
 	lb bc, 1, 3
 	call PrintNumber ; print number of owned pokemon
-	hlcoord 16, 2
+	hlcoord 15, 2
 	ld de, PokedexSeenText
 	call PlaceString
-	hlcoord 16, 5
+	hlcoord 15, 5
 	ld de, PokedexOwnText
 	call PlaceString
-	hlcoord 1, 1
-	ld de, PokedexContentsText
-	call PlaceString
-	hlcoord 16, 10
+	hlcoord 15, 10
 	ld de, PokedexMenuItemsText
 	call PlaceString
 ; find the highest pokedex number among the pokemon the player has seen
@@ -217,7 +209,7 @@ HandlePokedexListMenu:
 .loop
 	xor a
 	ldh [hAutoBGTransferEnabled], a
-	hlcoord 4, 2
+	hlcoord 2, 2
 	lb bc, 14, 10
 	call ClearScreenArea
 	hlcoord 1, 3
@@ -244,9 +236,6 @@ HandlePokedexListMenu:
 	ld de, wd11e
 	lb bc, LEADING_ZEROES | 1, 3
 	call PrintNumber ; print the pokedex number
-	ld de, SCREEN_WIDTH
-	add hl, de
-	dec hl
 	push hl
 	ld hl, wPokedexOwned
 	call IsPokemonBitSet
@@ -256,6 +245,8 @@ HandlePokedexListMenu:
 	ld a, $72 ; pokeball tile
 .writeTile
 	ld [hl], a ; put a pokeball next to pokemon that the player has owned
+	ld de, SCREEN_WIDTH - 2
+	add hl, de
 	push hl
 	ld hl, wPokedexSeen
 	call IsPokemonBitSet
@@ -269,7 +260,6 @@ HandlePokedexListMenu:
 	call GetMonName
 .skipGettingName
 	pop hl
-	inc hl
 	call PlaceString
 	pop hl
 	ld bc, 2 * SCREEN_WIDTH
@@ -347,17 +337,56 @@ HandlePokedexListMenu:
 	and a
 	ret
 
-DrawPokedexVerticalLine:
-	ld c, 9 ; height of line
-	ld de, SCREEN_WIDTH
-	ld a, $71 ; vertical line tile
-.loop
+DrawPokedexBox:
+	push hl
+	ld a, $63 ; top left corner
+	ld [hli], a
+	ld d, $64 ; top edge
+	call .FillRow
+	ld a, $65 ; top right corner
 	ld [hl], a
+	pop hl
+	ld de, SCREEN_WIDTH
 	add hl, de
-	xor 1 ; toggle between vertical line tile and box tile
-	dec c
+.loop
+	push hl
+	ld a, $66 ; left edge
+	ld [hli], a
+	ld e, c ; width
+.skip_loop
+	ld a, e
+	and a
+	jr z, .skipped_row
+	ld a, d
+	inc hl
+	dec e
+	jr .skip_loop
+.skipped_row
+	ld a, $67 ; right edge
+	ld [hl], a
+	pop hl
+	ld de, SCREEN_WIDTH
+	add hl, de
+	dec b ; height
 	jr nz, .loop
+	ld a, $68 ; bottom left corner
+	ld [hli], a
+	ld d, $69 ; bottom edge
+	call .FillRow
+	ld a, $6a ; bottom right corner
+	ld [hl], a
 	ret
+
+.FillRow:
+	ld e, c ; width
+.row_loop
+	ld a, e
+	and a
+	ret z
+	ld a, d
+	ld [hli], a
+	dec e
+	jr .row_loop
 
 PokedexSeenText:
 	db "SEEN@"
@@ -421,7 +450,7 @@ ShowPokedexDataInternal:
 	call DrawTileLine ; draw top border
 
 	hlcoord 0, 17
-	ld b, $6f
+	ld b, $69
 	call DrawTileLine ; draw bottom border
 
 	hlcoord 0, 1
@@ -437,9 +466,9 @@ ShowPokedexDataInternal:
 	ldcoord_a 0, 0
 	ld a, $65 ; upper right corner tile
 	ldcoord_a 19, 0
-	ld a, $6c ; lower left corner tile
+	ld a, $68 ; lower left corner tile
 	ldcoord_a 0, 17
-	ld a, $6e ; lower right corner tile
+	ld a, $6a ; lower right corner tile
 	ldcoord_a 19, 17
 
 	hlcoord 0, 9
@@ -597,8 +626,8 @@ HeightWeightText:
 
 ; horizontal line that divides the pokedex text description from the rest of the data
 PokedexDataDividerLine:
-	db $68, $69, $6B, $69, $6B, $69, $6B, $69, $6B, $6B
-	db $6B, $6B, $69, $6B, $69, $6B, $69, $6B, $69, $6A
+	db $66, $7f, $7f, $7f, $7f, $7f, $7f, $7f, $7f, $7f
+	db $7f, $7f, $7f, $7f, $7f, $7f, $7f, $7f, $7f, $67
 	db "@"
 
 ; draws a line of tiles
