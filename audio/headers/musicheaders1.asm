@@ -26,10 +26,11 @@ Music_Cities1::
 
 ; Cerulean City, Fuchsia City
 Music_Cities2::
-	channel_count 3
+	channel_count 4
 	channel 1, Music_Cities2_Ch1
 	channel 2, Music_Cities2_Ch2
 	channel 3, Music_Cities2_Ch3
+	channel 4, Music_Cities2_Ch4
 
 Music_Celadon::
 	channel_count 3
