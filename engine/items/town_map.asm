@@ -278,7 +278,7 @@ LoadTownMap:
 	call TextBoxBorder
 	call DisableLCD
 	ld hl, WorldMapTileGraphics
-	ld de, vChars2 tile $60
+	ld de, vTileset
 	ld bc, WorldMapTileGraphicsEnd - WorldMapTileGraphics
 	ld a, BANK(WorldMapTileGraphics)
 	call FarCopyData2
@@ -304,29 +304,7 @@ LoadTownMap:
 	ret
 
 TownMapTilemap:
-	db $7f,$7f,$7f,$7f,$7f,$7f,$7f,$7f,$7f,$7f,$7f,$7f,$7f,$7f,$7f,$7f
-	db $7f,$7f,$7f,$7f,$66,$66,$66,$66,$66,$66,$66,$66,$66,$66,$66,$66
-	db $7f,$7f,$7f,$68,$64,$64,$64,$64,$66,$66,$66,$66,$66,$66,$66,$66
-	db $66,$66,$66,$66,$7f,$66,$66,$66,$66,$68,$64,$64,$66,$66,$65,$66
-	db $66,$66,$66,$7f,$6c,$7f,$7f,$7f,$65,$7f,$7f,$7f,$7f,$66,$66,$64
-	db $66,$66,$7f,$66,$65,$7f,$7f,$7f,$66,$66,$66,$66,$7f,$66,$66,$66
-	db $6c,$66,$6b,$64,$66,$66,$6c,$66,$6c,$66,$66,$66,$66,$66,$66,$66
-	db $7f,$66,$66,$66,$7f,$6b,$64,$64,$66,$66,$7f,$66,$7f,$66,$7f,$7f
-	db $7f,$65,$7f,$7f,$65,$7f,$7f,$7f,$65,$64,$64,$64,$66,$66,$7f,$66
-	db $7f,$66,$7f,$66,$66,$66,$66,$66,$7f,$66,$66,$66,$7f,$64,$64,$64
-	db $66,$66,$7f,$66,$7f,$66,$7f,$6b,$6a,$66,$66,$66,$7f,$66,$66,$66
-	db $7f,$64,$64,$64,$66,$66,$7f,$7f,$65,$66,$7f,$64,$64,$64,$6a,$66
-	db $7f,$66,$66,$66,$7f,$64,$64,$64,$66,$6b,$6a,$66,$7f,$66,$7f,$66
-	db $64,$64,$64,$66,$65,$7f,$7f,$7f,$7f,$69,$64,$64,$6b,$64,$64,$66
-	db $7f,$66,$7f,$6b,$64,$64,$64,$6a,$66,$66,$66,$66,$7f,$6b,$64,$64
-	db $64,$64,$64,$66,$65,$6b,$6f,$64,$64,$64,$64,$64,$66,$7f,$7f,$7f
-	db $7f,$64,$64,$64,$64,$64,$64,$6a,$7f,$64,$6f,$64,$64,$69,$66,$66
-	db $66,$7f,$66,$66,$64,$64,$64,$64,$64,$64,$64,$64,$6f,$64,$6d,$6e
-	db $7f,$7f,$65,$7f,$7f,$7f,$66,$6b,$64,$64,$64,$64,$64,$64,$64,$69
-	db $7f,$68,$64,$64,$6a,$66,$7f,$6b,$64,$64,$64,$64,$64,$64,$64,$64
-	db $64,$64,$64,$66,$65,$7f,$6e,$6c,$6e,$6e,$6d,$64,$64,$64,$64,$64
-	db $64,$64,$64,$64,$64,$64,$64,$64,$64,$64,$64,$64,$64,$64,$64,$64
-	db $64,$64,$64,$64,$64,$64,$64,$64
+	INCBIN "gfx/town_map/town_map.tilemap"
 TownMapTilemapEnd:
 
 ExitTownMap:
@@ -401,7 +379,7 @@ DisplayWildLocations:
 ; if no OAM entries were written, print area unknown text
 	hlcoord 1, 7
 	ld b, 2
-	ld c, 15
+	ld c, 16
 	call TextBoxBorder
 	hlcoord 2, 9
 	ld de, AreaUnknownText
@@ -418,7 +396,7 @@ DisplayWildLocations:
 	jp CopyData
 
 AreaUnknownText:
-	db " AREA UNKNOWN@"
+	db "  AREA UNKNOWN@"
 
 TownMapCoordsToOAMCoords:
 ; in: lower nybble of a = x, upper nybble of a = y
