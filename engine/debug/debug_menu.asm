@@ -2,6 +2,7 @@ DebugMenu:
 	call ClearScreen
 
 	call LoadFontTilePatterns
+	call LoadTextBoxTilePatterns
 	call LoadHpBarAndStatusTilePatterns
 	call ClearSprites
 	call RunDefaultPaletteCommand
