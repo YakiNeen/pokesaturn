@@ -165,7 +165,7 @@ EnemyBattleHUDGraphicsTiles:
 ; The tile numbers for specific parts of the battle display for the enemy
 	db $73 ; unused ($73 is hardcoded in the routine that uses these bytes)
 	db $74 ; lower-left corner tile of the HUD
-	db $78 ; lower-right triangle tile of the HUD
+	db $77 ; lower-right triangle tile of the HUD
 
 PlaceHUDTiles:
 	ld [hl], $73

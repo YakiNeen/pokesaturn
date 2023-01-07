@@ -541,7 +541,7 @@ DrawTrainerInfo:
 	ld a, $03
 	call FarCopyData2
 	ld hl, TextBoxGraphics
-	ld de, 1 tiles
+	ld de, 0 tiles
 	add hl, de ; hl = colon tile pattern
 	ld de, vChars1 tile $49
 	ld bc, 1 tiles

@@ -29,8 +29,8 @@
 
 ; Actual characters (from gfx/font/font_extra.png)
 
-	charmap ":",         $77
-	charmap "<COLON>",   $78
+	charmap "<COLON>",   $77
+	charmap ":",         $78
 
 	charmap "┌",         $79
 	charmap "─",         $7a
