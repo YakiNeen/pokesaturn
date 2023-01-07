@@ -130,7 +130,7 @@ PlacePlayerHUDTiles:
 PlayerBattleHUDGraphicsTiles:
 ; The tile numbers for specific parts of the battle display for the player's pokemon
 	db $73 ; unused ($73 is hardcoded into the routine that uses these bytes)
-	db $77 ; lower-right corner tile of the HUD
+	db $75 ; lower-right corner tile of the HUD
 	db $6F ; lower-left triangle tile of the HUD
 
 PlaceEnemyHUDTiles:
