@@ -288,25 +288,10 @@ LoadTownMap:
 	ld a, BANK(MonNestIcon)
 	call FarCopyDataDouble
 	hlcoord 0, 0
-	ld de, CompressedMap
-.nextTile
-	ld a, [de]
-	and a
-	jr z, .done
-	ld b, a
-	and $f
-	ld c, a
-	ld a, b
-	swap a
-	and $f
-	add $60
-.writeRunLoop
-	ld [hli], a
-	dec c
-	jr nz, .writeRunLoop
-	inc de
-	jr .nextTile
-.done
+	ld hl, TownMapTilemap
+	ld de, wTileMap
+	ld bc, TownMapTilemapEnd - TownMapTilemap
+	call CopyData
 	call EnableLCD
 	ld b, SET_PAL_TOWN_MAP
 	call RunPaletteCommand
@@ -318,8 +303,31 @@ LoadTownMap:
 	ld [wTownMapSpriteBlinkingEnabled], a
 	ret
 
-CompressedMap:
-	INCBIN "gfx/town_map/town_map.rle"
+TownMapTilemap:
+	db $7f,$7f,$7f,$7f,$7f,$7f,$7f,$7f,$7f,$7f,$7f,$7f,$7f,$7f,$7f,$7f
+	db $7f,$7f,$7f,$7f,$66,$66,$66,$66,$66,$66,$66,$66,$66,$66,$66,$66
+	db $7f,$7f,$7f,$68,$64,$64,$64,$64,$66,$66,$66,$66,$66,$66,$66,$66
+	db $66,$66,$66,$66,$7f,$66,$66,$66,$66,$68,$64,$64,$66,$66,$65,$66
+	db $66,$66,$66,$7f,$6c,$7f,$7f,$7f,$65,$7f,$7f,$7f,$7f,$66,$66,$64
+	db $66,$66,$7f,$66,$65,$7f,$7f,$7f,$66,$66,$66,$66,$7f,$66,$66,$66
+	db $6c,$66,$6b,$64,$66,$66,$6c,$66,$6c,$66,$66,$66,$66,$66,$66,$66
+	db $7f,$66,$66,$66,$7f,$6b,$64,$64,$66,$66,$7f,$66,$7f,$66,$7f,$7f
+	db $7f,$65,$7f,$7f,$65,$7f,$7f,$7f,$65,$64,$64,$64,$66,$66,$7f,$66
+	db $7f,$66,$7f,$66,$66,$66,$66,$66,$7f,$66,$66,$66,$7f,$64,$64,$64
+	db $66,$66,$7f,$66,$7f,$66,$7f,$6b,$6a,$66,$66,$66,$7f,$66,$66,$66
+	db $7f,$64,$64,$64,$66,$66,$7f,$7f,$65,$66,$7f,$64,$64,$64,$6a,$66
+	db $7f,$66,$66,$66,$7f,$64,$64,$64,$66,$6b,$6a,$66,$7f,$66,$7f,$66
+	db $64,$64,$64,$66,$65,$7f,$7f,$7f,$7f,$69,$64,$64,$6b,$64,$64,$66
+	db $7f,$66,$7f,$6b,$64,$64,$64,$6a,$66,$66,$66,$66,$7f,$6b,$64,$64
+	db $64,$64,$64,$66,$65,$6b,$6f,$64,$64,$64,$64,$64,$66,$7f,$7f,$7f
+	db $7f,$64,$64,$64,$64,$64,$64,$6a,$7f,$64,$6f,$64,$64,$69,$66,$66
+	db $66,$7f,$66,$66,$64,$64,$64,$64,$64,$64,$64,$64,$6f,$64,$6d,$6e
+	db $7f,$7f,$65,$7f,$7f,$7f,$66,$6b,$64,$64,$64,$64,$64,$64,$64,$69
+	db $7f,$68,$64,$64,$6a,$66,$7f,$6b,$64,$64,$64,$64,$64,$64,$64,$64
+	db $64,$64,$64,$66,$65,$7f,$6e,$6c,$6e,$6e,$6d,$64,$64,$64,$64,$64
+	db $64,$64,$64,$64,$64,$64,$64,$64,$64,$64,$64,$64,$64,$64,$64,$64
+	db $64,$64,$64,$64,$64,$64,$64,$64
+TownMapTilemapEnd:
 
 ExitTownMap:
 ; clear town map graphics data and load usual graphics data
@@ -330,6 +338,7 @@ ExitTownMap:
 	call ClearSprites
 	call LoadPlayerSpriteGraphics
 	call LoadFontTilePatterns
+	call LoadTextBoxTilePatterns
 	call ReloadTilesetTilePatterns
 	call UpdateSprites
 	jp RunDefaultPaletteCommand
