@@ -86,7 +86,7 @@ ItemUsePtrTable:
 	dw ItemUseXStat      ; X_SPEED
 	dw ItemUseXStat      ; X_SPECIAL
 	dw ItemUseCoinCase   ; COIN_CASE
-	dw ItemUseOaksParcel ; OAKS_PARCEL
+	dw UnusableItem      ; OAKS_PARCEL
 	dw ItemUseItemfinder ; ITEMFINDER
 	dw UnusableItem      ; SILPH_SCOPE
 	dw ItemUsePokeflute  ; POKE_FLUTE
@@ -1855,9 +1855,6 @@ FishingInit:
 	scf ; can't fish when surfing
 	ret
 
-ItemUseOaksParcel:
-	jp ItemUseNotYoursToUse
-
 ItemUseItemfinder:
 	ld a, [wIsInBattle]
 	and a
@@ -2225,10 +2222,6 @@ ItemUseNotTime:
 	ld hl, ItemUseNotTimeText
 	jr ItemUseFailed
 
-ItemUseNotYoursToUse:
-	ld hl, ItemUseNotYoursToUseText
-	jr ItemUseFailed
-
 ThrowBallAtTrainerMon:
 	call RunDefaultPaletteCommand
 	call LoadScreenTilesFromBuffer1 ; restore saved screen
@@ -2260,10 +2253,6 @@ ItemUseFailed:
 
 ItemUseNotTimeText:
 	text_far _ItemUseNotTimeText
-	text_end
-
-ItemUseNotYoursToUseText:
-	text_far _ItemUseNotYoursToUseText
 	text_end
 
 ItemUseNoEffectText:
