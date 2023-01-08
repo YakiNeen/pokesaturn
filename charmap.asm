@@ -43,8 +43,6 @@
 ; Actual characters (from gfx/font/font_battle_extra.png)
 
 	charmap "<LV>",      $6e
-	charmap "<pa>",      $6f
-	charmap "<ra>",      $70
 
 	charmap "<BOLD_P>",  $72
 	charmap "<ID>",      $73
