@@ -84,10 +84,11 @@ Music_MuseumGuy::
 	channel 4, Music_MuseumGuy_Ch4
 
 Music_SafariZone::
-	channel_count 3
+	channel_count 4
 	channel 1, Music_SafariZone_Ch1
 	channel 2, Music_SafariZone_Ch2
 	channel 3, Music_SafariZone_Ch3
+	channel 4, Music_SafariZone_Ch4
 
 Music_PkmnHealed::
 	channel_count 3

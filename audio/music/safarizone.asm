@@ -16,14 +16,15 @@ Music_SafariZone_Ch1::
 	note G_, 1
 	rest 4
 	duty_cycle 3
-.mainloop:
+
+Music_SafariZone_Dois::
 	sound_call .sub1
 	note_type 12, 10, 4
 	note F#, 4
 	sound_call .sub1
 	note_type 12, 10, 4
 	note F#, 4
-	sound_loop 0, .mainloop
+	sound_loop 0, Music_SafariZone_Dois
 
 .sub1:
 	note_type 12, 10, 2
@@ -48,14 +49,15 @@ Music_SafariZone_Ch2::
 	note D_, 1
 	rest 4
 	duty_cycle 3
-.mainloop:
+
+Music_SafariZone_Principal::
 	sound_call .sub1
 	note_type 12, 11, 5
 	note A_, 4
 	sound_call .sub1
 	note_type 12, 11, 5
 	note B_, 4
-	sound_loop 0, .mainloop
+	sound_loop 0, Music_SafariZone_Principal
 
 .sub1:
 	note_type 12, 11, 2
@@ -72,14 +74,15 @@ Music_SafariZone_Ch2::
 Music_SafariZone_Ch3::
 	note_type 12, 1, 0
 	rest 8
-.mainloop:
+
+Music_SafariZone_Baixo::
 	sound_call .sub1
 	octave 4
 	note A_, 4
 	sound_call .sub1
 	octave 4
 	note B_, 4
-	sound_loop 0, .mainloop
+	sound_loop 0, Music_SafariZone_Baixo
 
 .sub1:
 	octave 3
@@ -104,3 +107,15 @@ Music_SafariZone_Ch3::
 	note A_, 2
 	rest 2
 	sound_ret
+
+Music_SafariZone_Ch4::
+	drum_speed 12
+	rest 8
+
+Music_SafariZone_Percussao::
+	drum_note 2, 6
+	drum_note 2, 4
+	drum_note 6, 2
+	drum_note 6, 2
+	drum_note 2, 2
+	sound_loop 0, Music_SafariZone_Percussao
