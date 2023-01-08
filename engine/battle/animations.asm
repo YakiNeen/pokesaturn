@@ -1833,10 +1833,7 @@ _AnimationSlideMonOff:
 .PlayerNextTile
 	ld a, [hl]
 	add 7
-; This is a bug. The lower right corner tile of the mon back pic is blanked
-; while the mon is sliding off the screen. It should compare with the max tile
-; plus one instead.
-	cp $61
+	cp $62
 	ret c
 	ld a, " "
 	ret
