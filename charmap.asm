@@ -55,6 +55,9 @@
 	charmap "<k>",       $61 ; gfx/pokedex/pokedex.png
 	charmap "<g>",       $62 ; gfx/pokedex/pokedex.png
 
+	; needed for LoadTownMap_Fly (see engine/items/town_map.asm)
+	charmap "▲",         $27 ; gfx/town_map/town_map.2bpp
+
 	; needed for PrintAlphabet (see engine/menus/naming_screen.asm)
 	charmap "<ED>",      $c4 ; gfx/font/nickname_screen.1bpp
 
@@ -141,9 +144,9 @@
 	charmap "<u'>",      $c9
 	charmap "<y'>",      $ca
 
-	charmap "&",         $cb
+	charmap "²",         $cb
+	charmap "&",         $cc
 
-	charmap "▲",         $cc
 	charmap "▷",         $cd
 	charmap "▶",         $ce
 	charmap "▼",         $cf
