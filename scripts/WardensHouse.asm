@@ -40,17 +40,12 @@ FuchsiaHouse2Text1:
 	call PrintText
 	lb bc, HM_STRENGTH, 1
 	call GiveItem
-	jr nc, .bag_full
 	ld hl, ReceivedHM04Text
 	call PrintText
 	SetEvent EVENT_GOT_HM04
 	jr .done
 .got_item
 	ld hl, HM04ExplanationText
-	call PrintText
-	jr .done
-.bag_full
-	ld hl, HM04NoRoomText
 	call PrintText
 .done
 	jp TextScriptEnd
@@ -86,10 +81,6 @@ ReceivedHM04Text:
 
 HM04ExplanationText:
 	text_far _HM04ExplanationText
-	text_end
-
-HM04NoRoomText:
-	text_far _HM04NoRoomText
 	text_end
 
 FuchsiaHouse2Text5:

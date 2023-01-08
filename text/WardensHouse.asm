@@ -70,11 +70,6 @@ _HM04ExplanationText::
 	line "rare SURF HM."
 	done
 
-_HM04NoRoomText::
-	text "Your pack is"
-	line "stuffed full!"
-	done
-
 _FuchsiaHouse2Text_75176::
 	text "#MON photos"
 	line "and fossils."

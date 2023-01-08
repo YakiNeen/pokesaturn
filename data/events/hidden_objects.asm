@@ -27,7 +27,6 @@ HiddenObjectMaps:
 	db COLOSSEUM
 	db VIRIDIAN_FOREST
 	db MT_MOON_B2F
-	db INDIGO_PLATEAU
 	db ROUTE_25
 	db ROUTE_9
 	db SS_ANNE_KITCHEN
@@ -107,7 +106,6 @@ HiddenObjectPointers:
 	dw ColosseumHiddenObjects
 	dw ViridianForestHiddenObjects
 	dw MtMoon3HiddenObjects
-	dw IndigoPlateauHiddenObjects
 	dw Route25HiddenObjects
 	dw Route9HiddenObjects
 	dw SSAnne6HiddenObjects
@@ -376,11 +374,6 @@ ViridianForestHiddenObjects:
 MtMoon3HiddenObjects:
 	hidden_object 18, 12, MOON_STONE, HiddenItems
 	hidden_object 33,  9, ETHER, HiddenItems
-	db -1 ; end
-
-IndigoPlateauHiddenObjects:
-	hidden_object  8, 13, $ff, PrintIndigoPlateauHQText ; inaccessible
-	hidden_object 11, 13, SPRITE_FACING_DOWN, PrintIndigoPlateauHQText ; inaccessible
 	db -1 ; end
 
 Route25HiddenObjects:

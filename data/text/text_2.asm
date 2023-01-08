@@ -425,11 +425,6 @@ _FightingDojoText::
 	text "FIGHTING DOJO"
 	done
 
-_IndigoPlateauHQText::
-	text "INDIGO PLATEAU"
-	line "#MON LEAGUE HQ"
-	done
-
 _RedBedroomSNESText::
 	text "<PLAYER> is"
 	line "playing the SNES!"
@@ -444,6 +439,10 @@ _Route15UpstairsBinocularsText::
 	para "A large, shining"
 	line "bird is flying"
 	cont "toward the sea."
+	done
+
+_CantSeeText::
+	text "Huh? Can't see!"
 	done
 
 _AerodactylFossilText::
