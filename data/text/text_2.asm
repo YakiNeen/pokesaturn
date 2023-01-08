@@ -155,135 +155,6 @@ _GymStatueText2::
 	cont "<PLAYER>"
 	done
 
-_ViridianCityPokecenterGuyText::
-	text "#MON CENTERs"
-	line "heal your tired,"
-	cont "hurt or fainted"
-	cont "#MON!"
-	done
-
-_PewterCityPokecenterGuyText::
-	text "Yawn!"
-
-	para "When JIGGLYPUFF"
-	line "sings, #MON"
-	cont "get drowsy..."
-
-	para "...Me too..."
-	line "Snore..."
-	done
-
-_CeruleanPokecenterGuyText::
-	text "BILL has lots of"
-	line "#MON!"
-
-	para "He collects rare"
-	line "ones too!"
-	done
-
-_LavenderPokecenterGuyText::
-	text "CUBONEs wear"
-	line "skulls, right?"
-
-	para "People will pay a"
-	line "lot for one!"
-	done
-
-_MtMoonPokecenterBenchGuyText::
-	text "If you have too"
-	line "many #MON, you"
-	cont "should store them"
-	cont "via PC!"
-	done
-
-_RockTunnelPokecenterGuyText::
-	text "I heard that"
-	line "GHOSTs haunt"
-	cont "LAVENDER TOWN!"
-	done
-
-_UnusedBenchGuyText1::
-	text "I wish I could"
-	line "catch #MON."
-	done
-
-_UnusedBenchGuyText2::
-	text "I'm tired from"
-	line "all the fun..."
-	done
-
-_UnusedBenchGuyText3::
-	text "SILPH's manager"
-	line "is hiding in the"
-	cont "SAFARI ZONE."
-	done
-
-_VermilionPokecenterGuyText::
-	text "It is true that a"
-	line "higher level"
-	cont "#MON will be"
-	cont "more powerful..."
-
-	para "But, all #MON"
-	line "will have weak"
-	cont "points against"
-	cont "specific types."
-
-	para "So, there is no"
-	line "universally"
-	cont "strong #MON."
-	done
-
-_CeladonCityPokecenterGuyText::
-	text "If I had a BIKE,"
-	line "I would go to"
-	cont "CYCLING ROAD!"
-	done
-
-_FuchsiaCityPokecenterGuyText::
-	text "If you're studying "
-	line "#MON, visit"
-	cont "the SAFARI ZONE."
-
-	para "It has all sorts"
-	line "of rare #MON."
-	done
-
-_CinnabarPokecenterGuyText::
-	text "#MON can still"
-	line "learn techniques"
-	cont "after canceling"
-	cont "evolution."
-
-	para "Evolution can wait"
-	line "until new moves"
-	cont "have been learned."
-	done
-
-_SaffronCityPokecenterGuyText1::
-	text "It would be great"
-	line "if the ELITE FOUR"
-	cont "came and stomped"
-	cont "TEAM ROCKET!"
-	done
-
-_SaffronCityPokecenterGuyText2::
-	text "TEAM ROCKET took"
-	line "off! We can go"
-	cont "out safely again!"
-	cont "That's great!"
-	done
-
-_CeladonCityHotelText::
-	text "My sis brought me"
-	line "on this vacation!"
-	done
-
-_BookcaseText::
-	text "Crammed full of"
-	line "#MON books!"
-	done
-
 _NewBicycleText::
 	text "A shiny new"
 	line "BICYCLE!"
@@ -448,21 +319,6 @@ _GameCornerCoinCaseText::
 _GameCornerNoCoinsText::
 	text "You don't have"
 	line "any coins!"
-	done
-
-_GameCornerOutOfOrderText::
-	text "OUT OF ORDER"
-	line "This is broken."
-	done
-
-_GameCornerOutToLunchText::
-	text "OUT TO LUNCH"
-	line "This is reserved."
-	done
-
-_GameCornerSomeonesKeysText::
-	text "Someone's keys!"
-	line "They'll be back."
 	done
 
 _JustAMomentText::
@@ -727,13 +583,6 @@ _VermilionGymTrashSuccessText1::
 	text_end
 
 _VermilionGymTrashSuccessText2::
-	text "Hey! There's"
-	line "another switch"
-	cont "under the trash!"
-	cont "Turn it on!"
-	prompt
-
-_VermilionGymTrashSuccessText3::
 	text "The 2nd electric"
 	line "lock opened!"
 
@@ -802,9 +651,10 @@ _PokemonBooksText::
 	line "#MON books!"
 	done
 
-_DiglettSculptureText::
-	text "It's a sculpture"
-	line "of DIGLETT."
+_ButsudanText::
+	text "It's a BUTSUDAN."
+	line "Hmm, the smell of"
+	cont "incense!"
 	done
 
 _ElevatorText::

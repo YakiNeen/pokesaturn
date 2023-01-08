@@ -7,7 +7,7 @@ BookOrSculptureText::
 	lda_coord 8, 6
 	cp $38
 	jr nz, .ok
-	ld hl, DiglettSculptureText
+	ld hl, ButsudanText
 .ok
 	call PrintText
 	jp TextScriptEnd
@@ -16,6 +16,6 @@ PokemonBooksText:
 	text_far _PokemonBooksText
 	text_end
 
-DiglettSculptureText:
-	text_far _DiglettSculptureText
+ButsudanText:
+	text_far _ButsudanText
 	text_end

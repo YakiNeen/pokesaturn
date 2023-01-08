@@ -12,17 +12,11 @@ DEF SLOTSFISH   EQU $0E0C
 DEF SLOTSBIRD   EQU $1210
 DEF SLOTSMOUSE  EQU $1614
 
-; StartSlotMachine dialogs
-DEF SLOTS_OUTOFORDER   EQU $fd
-DEF SLOTS_OUTTOLUNCH   EQU $fe
-DEF SLOTS_SOMEONESKEYS EQU $ff
-
 ; in game trades
 ; TradeMons indexes (see data/events/trades.asm)
 	const_def
 	const TRADE_FOR_TERRY
 	const TRADE_FOR_MARCEL
-	const TRADE_FOR_CHIKUCHIKU ; unused
 	const TRADE_FOR_SAILOR
 	const TRADE_FOR_DUX
 	const TRADE_FOR_MARC
