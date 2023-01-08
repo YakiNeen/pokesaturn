@@ -233,6 +233,10 @@ HandlePokedexListMenu:
 	push hl
 	ld de, -SCREEN_WIDTH
 	add hl, de
+	ld a, $6b
+	ld [hli], a
+	ld a, "."
+	ld [hli], a
 	ld de, wd11e
 	lb bc, LEADING_ZEROES | 1, 3
 	call PrintNumber ; print the pokedex number
@@ -245,7 +249,7 @@ HandlePokedexListMenu:
 	ld a, $72 ; pokeball tile
 .writeTile
 	ld [hl], a ; put a pokeball next to pokemon that the player has owned
-	ld de, SCREEN_WIDTH - 2
+	ld de, SCREEN_WIDTH - 4
 	add hl, de
 	push hl
 	ld hl, wPokedexSeen
