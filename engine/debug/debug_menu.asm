@@ -73,8 +73,9 @@ TestBattle:
 
 	ld a, 20
 	ld [wCurEnemyLVL], a
-	ld a, RHYDON
+	ld a, MR_MIME
 	ld [wCurOpponent], a
+; O Mr.Mime (Psiquíco e Fada) foi escolhido para testar a mensagem de efetividade, uma vez que o tipo Dark (do Bite da Clefable) é Super Efetivo contra Psiquíco, mas não contra Fada
 
 	predef InitOpponent
 

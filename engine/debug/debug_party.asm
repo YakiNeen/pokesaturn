@@ -134,7 +134,7 @@ DebugItemsList:
 ClefableMoves::
 	; Clefable gets four HM moves.
 	ld hl, wPartyMon1Moves
-	ld a, FLY
+	ld a, BITE
 	ld [hli], a
 	ld a, CUT
 	ld [hli], a
@@ -143,7 +143,7 @@ ClefableMoves::
 	ld a, STRENGTH
 	ld [hl], a
 	ld hl, wPartyMon1PP
-	ld a, 15
+	ld a, 25
 	ld [hli], a
 	ld a, 30
 	ld [hli], a
