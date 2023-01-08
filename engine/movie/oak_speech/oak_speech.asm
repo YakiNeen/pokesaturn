@@ -59,7 +59,7 @@ OakSpeech:
 	ldh [hTileAnimations], a
 	ld a, [wd732]
 	bit 1, a ; possibly a debug mode bit
-	jp nz, .skipChoosingNames
+	jp nz, .debug
 	ld de, ProfOakPic
 	lb bc, BANK(ProfOakPic), $00
 	call IntroDisplayPicCenteredOrUpperRight
@@ -95,7 +95,6 @@ OakSpeech:
 	ld hl, IntroduceRivalText
 	call PrintText
 	call ChooseRivalName
-.skipChoosingNames
 	call GBFadeOutToWhite
 	call ClearScreen
 	ld de, RedPicFront
@@ -107,6 +106,7 @@ OakSpeech:
 	jr nz, .next
 	ld hl, OakSpeechText3
 	call PrintText
+.debug
 .next
 	ldh a, [hLoadedROMBank]
 	push af
