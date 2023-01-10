@@ -10,12 +10,11 @@ UpdatePlayerSprite:
 	ld [wSpritePlayerStateData2WalkAnimationCounter], a
 	jr .disableSprite
 ; check if a text box is in front of the sprite by checking if the lower left
-; background tile the sprite is standing on is greater than $5F, which is
-; the maximum number for map tiles
+; background tile the sprite is standing on is greater than MAP_TILESET_SIZE ($78)
 .checkIfTextBoxInFrontOfSprite
 	lda_coord 8, 9
 	ldh [hTilePlayerStandingOn], a
-	cp MAP_TILESET_SIZE
+	cp MAP_TILESET_SIZE + 1
 	jr c, .lowerLeftTileIsMapTile
 .disableSprite
 	ld a, $ff
@@ -514,7 +513,7 @@ CheckSpriteAvailability:
 ; make the sprite invisible if a text box is in front of it
 ; $5F is the maximum number for map tiles
 	call GetTileSpriteStandsOn
-	ld d, MAP_TILESET_SIZE
+	ld d, MAP_TILESET_SIZE + 1
 	ld a, [hli]
 	cp d
 	jr nc, .spriteInvisible ; standing on tile with ID >=MAP_TILESET_SIZE (bottom left tile)
