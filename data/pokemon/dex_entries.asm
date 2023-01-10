@@ -1258,4 +1258,5 @@ MissingNoDexEntry:
 	db "???@"
 	db 10
 	dw 100
-	db "???@"
+	text_far _MissingNoDexEntry
+	text_end
