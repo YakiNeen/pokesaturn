@@ -55,6 +55,15 @@
 	charmap "<k>",       $61 ; gfx/pokedex/pokedex.png
 	charmap "<g>",       $62 ; gfx/pokedex/pokedex.png
 
+	charmap "<c>",       $6c
+	charmap "³",         $6d
+	charmap "<p>",       $6e
+	charmap "<h>",       $6f
+	charmap "“",         $70
+	charmap "”",         $71
+
+	charmap "₂",         $73
+
 	; needed for LoadTownMap_Fly (see engine/items/town_map.asm)
 	charmap "▲",         $27 ; gfx/town_map/town_map.2bpp
 

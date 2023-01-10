@@ -14,7 +14,7 @@ ShowPokedexMenu:
 .setUpGraphics
 	ld b, SET_PAL_GENERIC
 	call RunPaletteCommand
-	callfar LoadPokedexTilePatterns
+	call LoadPokedexTilePatterns
 .doPokemonListMenu
 	ld hl, wTopMenuItemY
 	ld a, 3
@@ -426,7 +426,7 @@ ShowPokedexData:
 	call GBPalWhiteOutWithDelay3
 	call ClearScreen
 	call UpdateSprites
-	callfar LoadPokedexTilePatterns ; load pokedex tiles
+	call LoadPokedexTilePatterns ; load pokedex tiles
 
 ; function to display pokedex data from inside the pokedex
 ShowPokedexDataInternal:
@@ -691,3 +691,9 @@ IndexToPokedex:
 	ret
 
 INCLUDE "data/pokemon/dex_order.asm"
+
+LoadPokedexTilePatterns:
+	ld de, PokedexTileGraphics
+	ld hl, vChars2 tile $60
+	lb bc, BANK(PokedexTileGraphics), (PokedexTileGraphicsEnd - PokedexTileGraphics) / $10
+	jp CopyVideoData
