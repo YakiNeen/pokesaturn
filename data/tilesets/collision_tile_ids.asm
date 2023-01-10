@@ -17,7 +17,7 @@ RedsHouse2_Coll::
 
 Mart_Coll::
 Pokecenter_Coll::
-	coll_tiles $01, $0b, $1b, $1c, $5e
+	coll_tiles $01, $0b, $1b, $1c, $36, $5e
 
 Dojo_Coll::
 Gym_Coll::
