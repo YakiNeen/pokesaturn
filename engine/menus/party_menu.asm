@@ -4,6 +4,8 @@ DrawPartyMenu_::
 	call ClearScreen
 	call UpdateSprites
 	call LoadTextBoxTilePatterns
+
+RedrawPartyMenu__::
 	farcall LoadMonPartySpriteGfxWithLCDDisabled ; load pokemon icon graphics
 
 RedrawPartyMenu_::
