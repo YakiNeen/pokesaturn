@@ -1,6 +1,6 @@
 ; Yellow entry format:
 ;	db trainerclass, trainerid
-;	repeat { db partymon location, partymon move, move id }
+;	db partymon location, partymon move, move id
 ;	db 0
 
 SpecialTrainerMoves:
