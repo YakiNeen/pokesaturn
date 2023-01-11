@@ -140,7 +140,6 @@ SetScrollXForSlidingPlayerBodyLeft:
 
 StartBattle:
 	xor a
-	ld [wUnusedC000], a
 	ld [wPartyGainExpFlags], a
 	ld [wPartyFoughtCurrentEnemyFlags], a
 	ld [wActionResultOrTookBattleTurn], a
