@@ -1073,6 +1073,7 @@ wItemList:: ds 16
 wListPointer:: dw
 
 ; used to store pointers, but never read
+; used as a temp location for storing pointers for PP tracking
 wUnusedCF8D:: dw
 
 wItemPrices:: dw

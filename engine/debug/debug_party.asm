@@ -136,7 +136,7 @@ ClefableMoves::
 	ld hl, wPartyMon1Moves
 	ld a, BITE
 	ld [hli], a
-	ld a, CUT
+	ld a, FOCUS_ENERGY
 	ld [hli], a
 	ld a, SURF
 	ld [hli], a
@@ -145,7 +145,7 @@ ClefableMoves::
 	ld hl, wPartyMon1PP
 	ld a, 25
 	ld [hli], a
-	ld a, 15
+	ld a, 30
 	ld [hli], a
 	ld a, 15
 	ld [hli], a
