@@ -64,9 +64,6 @@
 
 	charmap "₂",         $73
 
-	; needed for LoadTownMap_Fly (see engine/items/town_map.asm)
-	charmap "▲",         $27 ; gfx/town_map/town_map.2bpp
-
 	; needed for PrintAlphabet (see engine/menus/naming_screen.asm)
 	charmap "<ED>",      $c4 ; gfx/font/nickname_screen.1bpp
 

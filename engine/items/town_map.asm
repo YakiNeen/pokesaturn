@@ -152,7 +152,7 @@ LoadTownMap_Fly::
 	ld [hl], $ff
 	push hl
 	hlcoord 0, 0
-	ld de, ToText
+	ld de, SetaText
 	call PlaceString
 	ld a, [wCurMap]
 	ld b, $0
@@ -177,7 +177,7 @@ LoadTownMap_Fly::
 	ld c, 15
 	call DelayFrames
 	hlcoord 18, 0
-	ld [hl], "▲"
+	ld [hl], $24
 	hlcoord 19, 0
 	ld [hl], "▼"
 	pop hl
@@ -241,8 +241,8 @@ LoadTownMap_Fly::
 	ld hl, wFlyLocationsList + NUM_CITY_MAPS
 	jr .pressedDown
 
-ToText:
-	db "To@"
+SetaText:
+	db $7f,$1c,"@"
 
 BuildFlyLocationsList:
 	ld hl, wFlyAnimUsingCoordList
@@ -278,7 +278,7 @@ LoadTownMap:
 	call TextBoxBorder
 	call DisableLCD
 	ld hl, WorldMapTileGraphics
-	ld de, vTileset
+	ld de, vTileset tile $10
 	ld bc, WorldMapTileGraphicsEnd - WorldMapTileGraphics
 	ld a, BANK(WorldMapTileGraphics)
 	call FarCopyData2
@@ -286,7 +286,7 @@ LoadTownMap:
 	ld de, vSprites tile $04
 	ld bc, MonNestIconEnd - MonNestIcon
 	ld a, BANK(MonNestIcon)
-	call FarCopyDataDouble
+	call FarCopyData2
 	hlcoord 0, 0
 	ld hl, TownMapTilemap
 	ld de, wTileMap
@@ -568,7 +568,7 @@ INCLUDE "data/maps/town_map_entries.asm"
 INCLUDE "data/maps/names.asm"
 
 MonNestIcon:
-	INCBIN "gfx/town_map/mon_nest_icon.1bpp"
+	INCBIN "gfx/town_map/mon_nest_icon.2bpp"
 MonNestIconEnd:
 
 TownMapSpriteBlinkingAnimation::
