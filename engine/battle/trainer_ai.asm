@@ -323,133 +323,150 @@ INCLUDE "data/trainers/ai_pointers.asm"
 
 JugglerAI:
 	cp 25 percent + 1
-	ret nc
-	jp AISwitchIfEnoughMons
+	jp c, AISwitchIfEnoughMons
+	ret
 
 BlackbeltAI:
 	cp 13 percent - 1
-	ret nc
-	jp AIUseXAttack
+	jp c, AIUseDireHit
+	ret
 
 GiovanniAI:
 	cp 25 percent + 1
-	ret nc
-	jp AIUseGuardSpec
+	jp c, AIUseGuardSpec
+	ret
 
 CooltrainerMAI:
 	cp 25 percent + 1
-	ret nc
-	jp AIUseXAttack
+	jp c, AIUseXSpecial
+	ld a, 5
+	call AICheckIfHPBelowFraction
+	jp c, AISwitchIfEnoughMons
+	ret
 
 CooltrainerFAI:
 	cp 25 percent + 1
-	ret nc
-	ld a, 10
-	call AICheckIfHPBelowFraction
-	jp c, AIUseHyperPotion
+	jp c, AIUseXAccuracy
 	ld a, 5
 	call AICheckIfHPBelowFraction
-	ret nc
-	jp AISwitchIfEnoughMons
+	jp c, AISwitchIfEnoughMons
+	ret
 
 BrockAI:
 ; if his active monster has a status condition, use a full heal
 	ld a, [wEnemyMonStatus]
 	and a
-	ret z
-	jp AIUseFullHeal
+	jp nz, AIUseFullHeal
+	ret
 
 MistyAI:
 	cp 25 percent + 1
-	ret nc
-	jp AIUseXDefend
+	jp c, AIUseXDefend
+	ret
 
 LtSurgeAI:
 	cp 25 percent + 1
-	ret nc
-	jp AIUseXSpeed
+	jp c, AIUseXSpeed
+	ret
 
 ErikaAI:
 	cp 50 percent + 1
-	ret nc
+	jr nc, .erikareturn
 	ld a, 10
 	call AICheckIfHPBelowFraction
-	ret nc
-	jp AIUseSuperPotion
+	jp c, AIUseSuperPotion
+.erikareturn
+	ret
 
 KogaAI:
 	cp 25 percent + 1
-	ret nc
-	jp AIUseXAttack
+	jp c, AIUseXAttack
+	ret
 
 BlaineAI:
 	cp 25 percent + 1
-	ret nc
+	jr nc, .blainereturn
 	ld a, 10
 	call AICheckIfHPBelowFraction
-	ret nc
-	jp AIUseHyperPotion
+	jp c, AIUseHyperPotion
+.blainereturn
+	ret
 
 SabrinaAI:
 	cp 25 percent + 1
-	ret nc
+	jr nc, .sabrinareturn
 	ld a, 10
 	call AICheckIfHPBelowFraction
-	ret nc
-	jp AIUseHyperPotion
+	jp c, AIUseHyperPotion
+.sabrinareturn
+	ret
 
 Rival2AI:
 	cp 13 percent - 1
-	ret nc
+	jr nc, .rival2return
 	ld a, 5
 	call AICheckIfHPBelowFraction
-	ret nc
-	jp AIUsePotion
+	jp c, AIUsePotion
+.rival2return
+	ret
 
 Rival3AI:
 	cp 13 percent - 1
-	ret nc
+	jr nc, .rival3return
 	ld a, 5
 	call AICheckIfHPBelowFraction
-	ret nc
-	jp AIUseFullRestore
+	jp c, AIUseFullRestore
+.rival3return
+	ret
 
 LoreleiAI:
 	cp 50 percent + 1
-	ret nc
+	jr nc, .loreleireturn
 	ld a, 5
 	call AICheckIfHPBelowFraction
-	ret nc
-	jp AIUseSuperPotion
+	jp c, AIUseSuperPotion
+.loreleireturn
+	ret
 
 BrunoAI:
 	cp 25 percent + 1
-	ret nc
-	jp AIUseXDefend
+	jp c, AIUseXDefend
+	ret
 
 AgathaAI:
 	cp 8 percent
 	jp c, AISwitchIfEnoughMons
 	cp 50 percent + 1
-	ret nc
+	jr nc, .agathareturn
 	ld a, 4
 	call AICheckIfHPBelowFraction
-	ret nc
-	jp AIUseSuperPotion
+	jp c, AIUseSuperPotion
+.agathareturn
+	ret
 
 LanceAI:
 	cp 50 percent + 1
-	ret nc
+	jr nc, .lancereturn
 	ld a, 5
 	call AICheckIfHPBelowFraction
-	ret nc
-	jp AIUseHyperPotion
+	jp c, AIUseHyperPotion
+.lancereturn
+	ret
 
 GenericAI:
 	and a ; clear carry
+	call CheckSwitchBit
+	jp nz, AISwitchIfEnoughMons
 	ret
 
 ; end of individual trainer AI routines
+
+CheckSwitchBit:	
+	ld a, [wUnusedC000]
+	bit 0, a	;check a for switch pkmn bit (sets or clears zero flag)
+	res 0, a ; clear the switch pkmn bit (does not affect flags)
+	ld [wUnusedC000], a
+	ret
 
 DecrementAICount:
 	ld hl, wAICount
@@ -654,7 +671,7 @@ AICureStatus:
 	pop af
 	ret
 
-AIUseXAccuracy: ; unused
+AIUseXAccuracy:
 	call AIPlayRestoringSFX
 	ld hl, wEnemyBattleStatus2
 	set 0, [hl]
@@ -668,7 +685,7 @@ AIUseGuardSpec:
 	ld a, GUARD_SPEC
 	jp AIPrintItemUse
 
-AIUseDireHit: ; unused
+AIUseDireHit:
 	call AIPlayRestoringSFX
 	ld hl, wEnemyBattleStatus2
 	set 2, [hl]

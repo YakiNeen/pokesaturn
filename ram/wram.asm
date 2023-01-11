@@ -1,6 +1,8 @@
 SECTION "Audio RAM", WRAM0
 
 wUnusedC000:: db
+;joenote - use this for battle bit settings
+;bit 0 - if set, ai should switch pokemon
 
 wSoundID:: db
 
