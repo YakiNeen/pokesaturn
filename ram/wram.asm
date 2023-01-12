@@ -2127,6 +2127,7 @@ wUnusedD71F:: db
 ; bit 7: set by ItemUseCardKey, which is leftover code from a previous implementation of the Card Key
 wd728:: db
 
+wLowHealthTonePairs::
 	ds 1
 
 ; redundant because it matches wObtainedBadges

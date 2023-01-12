@@ -37,33 +37,25 @@ CheckAISentOut::
 .partyret
 	ret
 
-;let's get some PP tracking for enemies both trainer and wild
 ChooseMovePPTrack:
-	;retrieve hl pointer
 	ld a, [wUnusedCF8D]
 	ld h, a
 	ld a, [wUnusedCF8D + 1]
 	ld l, a	
-	ld a, e	;retrieve move number
+	ld a, e
 	ld b, a
-;b holds the move slot (1 to 4)
-
 	call IsTrainerBattlePPCheck
-
 	ld a, b
 	dec a
 	ld [wEnemyMoveListIndex], a
-;is move disabled?
 	ld a, [wEnemyDisabledMove]
 	swap a
 	and $f
 	cp b
 	jp z, .flagset
-;is the move non-existant?
 	ld a, [hl]
 	and a
 	jp z, .flagset
-;now check the PP for the slot specified by "b"
 	push hl
 	ld hl, wEnemyMonPP
 	push bc
@@ -76,17 +68,16 @@ ChooseMovePPTrack:
 	and a
 	jr z, .PPexhausted
 .PPremaining
-	;else decrement PP
 	dec a
 	ld [hl], a
 	ld a, 1
-	ld e, a	;return nz flag if there was PP left
+	ld e, a
 	push bc
-	call transformPPtasks
+	call TransformPPtasks
 	pop bc
 	pop hl
 	jp .back
-.PPexhausted	;return zero flag if no PP left
+.PPexhausted
 	pop hl
 .flagset
 	xor a
@@ -123,14 +114,12 @@ IsTrainerBattlePPCheck:
 	push de
 	push hl
 	push bc
-	
 .loop1
 	dec b
 	jr z, .doneloop1
 	dec hl
 	jr .loop1
 .doneloop1
-
 	ld c, NUM_MOVES
 	ld de, wEnemyMonPP
 .loop2
@@ -144,7 +133,6 @@ IsTrainerBattlePPCheck:
 	dec c
 	jr nz, .loop2
 .done
-	;zero flag set by this point if all moves were ran through
 	pop bc
 	pop hl
 	pop de
@@ -158,33 +146,27 @@ IsTrainerBattlePPCheck:
 	pop bc
 	ret
 
-;if trainer uses transform, then write transform PP to party struct
-transformPPtasks:
+TransformPPtasks:
 	ld a, [wIsInBattle]
 	cp 2
 	ret z
-
 	ld c, b
 	ld b, 0
 	dec bc
-	
 	ld hl, wEnemyMonMoves
 	add hl, bc
 	ld a, [hl]
 	cp TRANSFORM
 	ret nz
-	
 	ld hl, wEnemyMonPP
 	add hl, bc
 	ld a, [hl]
 	push af
-	
 	ld hl, wEnemyMon1PP
 	add hl, bc
 	ld a, [wEnemyMonPartyPos]
 	ld bc, wEnemyMon2 - wEnemyMon1
 	call AddNTimes
-	
 	pop af
 	ld [hl], a
 	ret
@@ -192,20 +174,16 @@ transformPPtasks:
 AdvancedLoadPP::
 	ld a, [wIsInBattle]
 	cp 1
-	jr z, .doRegular	;don't do anything special for wild battles
-	;else see if the mon has been sent out before
+	jr z, .doRegular
 	call CheckAISentOut
-	jr z, .doRegular	;don't do anything special if the mon has not been out before
-
-	;else load its PPs from the wEnemyMonxPP
+	jr z, .doRegular
 	ld a, [wWhichPokemon]
 	ld hl, wEnemyMon1PP
 	ld bc, wEnemyMon2 - wEnemyMon1
 	call AddNTimes
-	;HL now points to wEnemyMonxPP
 	ld de, wEnemyMonPP
 	ld bc, $0004
-	call CopyData	;copy the pp data from wEnemyMonxPP to wEnemyMonPP
+	call CopyData
 	ret
 .doRegular
 	ld hl, wEnemyMonMoves
