@@ -76,12 +76,12 @@ Music_MeetRival::
 	channel 2, Music_MeetRival_Ch2
 	channel 3, Music_MeetRival_Ch3
 
-Music_MuseumGuy::
+Music_FollowMe::
 	channel_count 4
-	channel 1, Music_MuseumGuy_Ch1
-	channel 2, Music_MuseumGuy_Ch2
-	channel 3, Music_MuseumGuy_Ch3
-	channel 4, Music_MuseumGuy_Ch4
+	channel 1, Music_FollowMe_Ch1
+	channel 2, Music_FollowMe_Ch2
+	channel 3, Music_FollowMe_Ch3
+	channel 4, Music_FollowMe_Ch4
 
 Music_SafariZone::
 	channel_count 4

@@ -1,4 +1,4 @@
-Music_MuseumGuy_Ch1::
+Music_FollowMe_Ch1::
 	tempo 128
 	volume 7, 7
 	duty_cycle 2
@@ -52,7 +52,7 @@ Music_MuseumGuy_Ch1::
 	note D_, 6
 	sound_ret
 
-Music_MuseumGuy_Ch2::
+Music_FollowMe_Ch2::
 	duty_cycle 2
 	note_type 12, 12, 1
 	octave 4
@@ -161,7 +161,7 @@ Music_MuseumGuy_Ch2::
 	note A_, 4
 	sound_loop 0, .mainloop
 
-Music_MuseumGuy_Ch3::
+Music_FollowMe_Ch3::
 	note_type 12, 1, 0
 	rest 16
 	octave 4
@@ -255,7 +255,7 @@ Music_MuseumGuy_Ch3::
 	note A_, 1
 	sound_ret
 
-Music_MuseumGuy_Ch4::
+Music_FollowMe_Ch4::
 	drum_speed 12
 	rest 16
 	rest 16
