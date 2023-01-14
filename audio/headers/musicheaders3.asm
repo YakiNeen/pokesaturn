@@ -84,11 +84,11 @@ Music_CinnabarMansion::
 	channel 3, Music_CinnabarMansion_Ch3
 	channel 4, Music_CinnabarMansion_Ch4
 
-Music_PokemonTower::
+Music_Mart::
 	channel_count 3
-	channel 1, Music_PokemonTower_Ch1
-	channel 2, Music_PokemonTower_Ch2
-	channel 3, Music_PokemonTower_Ch3
+	channel 1, Music_Mart_Ch1
+	channel 2, Music_Mart_Ch2
+	channel 3, Music_Mart_Ch3
 
 Music_SilphCo::
 	channel_count 3

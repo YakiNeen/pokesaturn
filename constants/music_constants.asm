@@ -50,7 +50,7 @@ ENDM
 	music_const MUSIC_DUNGEON2,            Music_Dungeon2
 	music_const MUSIC_DUNGEON3,            Music_Dungeon3
 	music_const MUSIC_CINNABAR_MANSION,    Music_CinnabarMansion
-	music_const MUSIC_POKEMON_TOWER,       Music_PokemonTower
+	music_const MUSIC_MART,                Music_Mart
 	music_const MUSIC_SILPH_CO,            Music_SilphCo
 	music_const MUSIC_MEET_EVIL_TRAINER,   Music_MeetEvilTrainer
 	music_const MUSIC_MEET_FEMALE_TRAINER, Music_MeetFemaleTrainer

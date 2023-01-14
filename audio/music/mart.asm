@@ -1,4 +1,4 @@
-Music_PokemonTower_Ch1::
+Music_Mart_Ch1::
 	tempo 152
 	volume 7, 7
 	duty_cycle 3
@@ -138,7 +138,7 @@ Music_PokemonTower_Ch1::
 	note C_, 16
 	sound_loop 0, .mainloop
 
-Music_PokemonTower_Ch2::
+Music_Mart_Ch2::
 	vibrato 20, 3, 4
 	duty_cycle 3
 	note_type 12, 10, 0
@@ -288,7 +288,7 @@ Music_PokemonTower_Ch2::
 	note C_, 16
 	sound_loop 0, .mainloop
 
-Music_PokemonTower_Ch3::
+Music_Mart_Ch3::
 	vibrato 4, 1, 1
 	note_type 12, 1, 3
 	rest 8
