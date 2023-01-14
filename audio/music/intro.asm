@@ -3,26 +3,6 @@ Music_Intro_Ch1::
 	volume 7, 7
 	toggle_perfect_pitch
 	duty_cycle 2
-	vibrato 10, 2, 4
-	note_type 12, 10, 3
-	octave 4
-	note F_, 2
-	note F_, 1
-	note F_, 1
-	note F_, 6
-	note F_, 2
-	note G_, 2
-	note A_, 2
-	note A#, 3
-	octave 5
-	note C_, 1
-	note D_, 2
-	note E_, 2
-	note F_, 8
-	sound_ret
-
-Music_Intro_Ch2::
-	duty_cycle 2
 	vibrato 12, 2, 3
 	note_type 12, 9, 3
 	octave 3
@@ -41,6 +21,26 @@ Music_Intro_Ch2::
 	note F_, 2
 	note G_, 2
 	note A_, 8
+	sound_ret
+
+Music_Intro_Ch2::
+	duty_cycle 2
+	vibrato 10, 2, 4
+	note_type 12, 10, 3
+	octave 4
+	note F_, 2
+	note F_, 1
+	note F_, 1
+	note F_, 6
+	note F_, 2
+	note G_, 2
+	note A_, 2
+	note A#, 3
+	octave 5
+	note C_, 1
+	note D_, 2
+	note E_, 2
+	note F_, 8
 	sound_ret
 
 Music_Intro_Ch3::
