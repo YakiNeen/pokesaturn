@@ -1,4 +1,10 @@
-PokemonLogoGraphics: INCBIN "gfx/title/pokemon_logo.2bpp"
+IF DEF(_RED)
+PokemonLogoGraphics: INCBIN "gfx/title/pokemon_saturn.2bpp"
+ENDC
+IF DEF(_BLUE)
+PokemonLogoGraphics: INCBIN "gfx/title/pokemon_mars.2bpp"
+ENDC
+
 FontGraphics:: INCBIN "gfx/font/font.1bpp"
 FontGraphicsEnd::
 
